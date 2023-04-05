@@ -18,7 +18,7 @@ def upload():
 def success():  
     if request.method == 'POST':  
         f = request.files['file'] 
-        audio = whisper.load_audio(f)
+        audio = whisper.load_audio(f.filename)
         audio = whisper.pad_or_trim(audio) 
         mel = whisper.log_mel_spectrogram(audio).to(model.device)
         options = whisper.DecodingOptions()
