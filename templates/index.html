@@ -16,7 +16,7 @@
         <div style="background-color: #71CCF0;border-radius:10px;box-shadow: 6px 6px 8px black; padding-bottom:5px;margin-top:0">
           <div class="container" style="max-width: 50%; margin: 0 auto;">
             <h1  class="text-center mb-4">Speech-to-Text Transcription</h1>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" action = "/success">
               <div class="form-group">
                 <label for="file">Select an audio file to transcribe:</label>
                 <input type="file" class="form-control-file" id="file" name="file">
@@ -32,23 +32,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs7VBj6AJSKxpPofE9gJ9/nJQqIx2mrYSKti8KvPmU8VI8+6Tf"
         crossorigin="anonymous"></script>
-<script>
-  
-    $('form').submit(function (event) {
-        event.preventDefault();
-        var formData = new FormData($('form')[0]);
-        $.ajax({
-            url: '/success',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-              alert('success');
-              return false;
-            }
-        });
-    });
-</script>
 </body>
 </html>
