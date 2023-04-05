@@ -1,7 +1,9 @@
 import whisper
-from flask import *  
+from flask import * 
+import os
 app = Flask(__name__)  
-model = whisper.load_model("../pytorch_model.bin") 
+print(os.getcwd())
+#model = whisper.load_model("../pytorch_model.bin") 
 
 @app.route('/')  
 def upload():  
