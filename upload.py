@@ -22,7 +22,8 @@ def success():
     if request.method == 'POST':  
         f = request.files['file'] 
         f.save(f.filename) 
-        result = model.transcribe(f.filename, language='fr', suppress_silence=True, ts_num=16)
+        # result = model.transcribe(f.filename, language='fr', suppress_silence=True, ts_num=16)
+        result = model.transcribe(f.filename, language='fr')# suppress_silence=True, ts_num=16)
         stab_segments = result['segments']
         first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
