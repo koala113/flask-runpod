@@ -7,7 +7,7 @@ app = Flask(__name__)
 # model = whisper.load_model(curr_dir + "/pytorch_model.bin") 
 with open('../pytorch_model.bin', 'rb') as f1:
     data = np.fromfile(f1, dtype=np.float32)
-model = whisper.model()
+model = whisper.model('large')
 model.load_from_bytes(data.tobytes())
 
 @app.route('/')  
