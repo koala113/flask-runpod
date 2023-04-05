@@ -2,6 +2,7 @@ import whisper
 import numpy as np
 from flask import * 
 import os
+from stable_whisper import modify_model
 from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
 # curr_dir = os.path.dirname(os.getcwd())
