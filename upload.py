@@ -2,7 +2,7 @@ import whisper
 from flask import * 
 import os
 app = Flask(__name__)  
-print(os.getcwd())
+curr_dir = os.getcwd()
 #model = whisper.load_model("../pytorch_model.bin") 
 
 @app.route('/')  
@@ -19,7 +19,7 @@ def success():
         # options = whisper.DecodingOptions()
         # result = whisper.decode(model, mel, options)
         #f.save(f.filename)  
-        return render_template("index.html", name = f.filename)  
+        return render_template("index.html", name = curr_dir)  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', debug = True)  
