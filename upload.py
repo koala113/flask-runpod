@@ -3,7 +3,7 @@ from flask import *
 import os
 app = Flask(__name__)  
 curr_dir = os.path.dirname(os.getcwd())
-#model = whisper.load_model("../pytorch_model.bin") 
+model = whisper.load_model(curr_dir + "/pytorch_model.bin") 
 
 @app.route('/')  
 def upload():  
