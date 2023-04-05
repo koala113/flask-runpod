@@ -2,7 +2,7 @@ import whisper
 import numpy as np
 from flask import * 
 import os
-from stable_whisper import stabilize_timestamps
+# from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
 # curr_dir = os.path.dirname(os.getcwd())
 # model = whisper.load_model(curr_dir + "/pytorch_model.bin") 
@@ -23,9 +23,9 @@ def success():
         result = model.transcribe(f.filename, suppress_silence=True, ts_num=16, lower_quantile=0.05, lower_threshold=0.1)
         stab_segments = result['segments']
         first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
-        stab_segments = stabilize_timestamps(result, top_focus=True)
-        print(first_segment_word_timestamps)
-        print(stab_segments)
+        # stab_segments = stabilize_timestamps(result, top_focus=True)
+        # print(first_segment_word_timestamps)
+        # print(stab_segments)
         # audio = whisper.load_audio(f.filename)
         # audio = whisper.pad_or_trim(audio) 
         # mel = whisper.log_mel_spectrogram(audio).to(model.device)
