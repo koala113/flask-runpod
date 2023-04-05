@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Speech-to-Text Transcription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+Zcbw5ymC28n/aODBybS+wOO5MvW7Xk"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="mycont" style="background:black;color:white;width:100%;height:100px;text-align:center; margin-botton:1px">
+    <h1 style="padding-top:20px">Upload your audio to get Transcription</h1>
+</div>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div style="background-color: #71CCF0;border-radius:10px;box-shadow: 6px 6px 8px black; padding-bottom:5px;margin-top:0">
+          <div class="container" style="max-width: 50%; margin: 0 auto;">
+            <h1  class="text-center mb-4">Speech-to-Text Transcription</h1>
+            <form method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="file">Select an audio file to transcribe:</label>
+                <input type="file" class="form-control-file" id="file" name="file">
+              </div>
+              <button style="padding:8px; border:none;border-radius:10px" type="submit" class="btn btn-primary">Transcribe</button>
+            </form>
+            <div id="result" class="mt-3"></div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs7VBj6AJSKxpPofE9gJ9/nJQqIx2mrYSKti8KvPmU8VI8+6Tf"
+        crossorigin="anonymous"></script>
+<script>
+    $('form').submit(function (event) {
+        event.preventDefault();
+        var formData = new FormData($('form')[0]);
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                $('#result').text('Transcription: ' + data.transcription);
+            }
+        });
+    });
+</script>
+</body>
+</html>
