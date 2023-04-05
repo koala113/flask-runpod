@@ -33,25 +33,7 @@
         integrity="sha384-DfXdz2htPH0lsSSs7VBj6AJSKxpPofE9gJ9/nJQqIx2mrYSKti8KvPmU8VI8+6Tf"
         crossorigin="anonymous"></script>
 <script>
-  {% comment %} $(document).ready(function() {
-    $("#form").on('submit', (function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: '/',
-        type: "POST",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(response) {
-          $("#form").trigger("reset"); // to reset form input fields
-        },
-        error: function(e) {
-          console.log(e);
-        }
-      });
-    }));
-  }); {% endcomment %}
+  
     $('form').submit(function (event) {
         event.preventDefault();
         var formData = new FormData($('form')[0]);
