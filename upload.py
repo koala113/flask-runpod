@@ -18,15 +18,15 @@ def upload():
 def success():  
     if request.method == 'POST':  
         f = request.files['file'] 
-        print(f)
         f.save(f.filename) 
-        audio = whisper.load_audio('temp_20.mp3')
-        print("dfjkadj;fj;aj;fjajfka", audio)
-        audio = whisper.pad_or_trim(audio) 
-        mel = whisper.log_mel_spectrogram(audio).to(model.device)
-        _, probs = model.detect_language(mel)
-        options = whisper.DecodingOptions()
-        result = whisper.decode(model, mel, options)
+        result = model.transcribe(f.filename)
+        # audio = whisper.load_audio(f.filename)
+        # print("dfjkadj;fj;aj;fjajfka", audio)
+        # audio = whisper.pad_or_trim(audio) 
+        # mel = whisper.log_mel_spectrogram(audio).to(model.device)
+        # _, probs = model.detect_language(mel)
+        # options = whisper.DecodingOptions()
+        # result = whisper.decode(model, mel, options)
         # f.save(f.filename)  
         return render_template("index.html", name = result.text)  
 
