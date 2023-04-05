@@ -8,7 +8,7 @@ app = Flask(__name__)
 with open('../pytorch_model.bin', 'rb') as f1:
     data = np.fromfile(f1, dtype=np.float32)
 model = whisper.load_model('large')
-model.load_from_bytes(data.tobytes())
+# model.load_from_bytes(data.tobytes())
 
 @app.route('/')  
 def upload():  
@@ -18,13 +18,13 @@ def upload():
 def success():  
     if request.method == 'POST':  
         f = request.files['file'] 
-        # audio = whisper.load_audio(f)
-        # audio = whisper.pad_or_trim(audio) 
-        # mel = whisper.log_mel_spectrogram(audio).to(model.device)
-        # options = whisper.DecodingOptions()
-        # result = whisper.decode(model, mel, options)
-        #f.save(f.filename)  
-        return render_template("index.html", name = f.filename)  
+        audio = whisper.load_audio(f)
+        audio = whisper.pad_or_trim(audio) 
+        mel = whisper.log_mel_spectrogram(audio).to(model.device)
+        options = whisper.DecodingOptions()
+        result = whisper.decode(model, mel, options)
+        # f.save(f.filename)  
+        return render_template("index.html", name = result.text)  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', debug = True)  
