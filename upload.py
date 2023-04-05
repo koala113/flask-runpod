@@ -2,7 +2,7 @@ import whisper
 from flask import * 
 import os
 app = Flask(__name__)  
-curr_dir = os.getcwd()
+curr_dir = os.path.dirname(os.getcwd())
 #model = whisper.load_model("../pytorch_model.bin") 
 
 @app.route('/')  
