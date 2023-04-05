@@ -33,7 +33,23 @@
         integrity="sha384-DfXdz2htPH0lsSSs7VBj6AJSKxpPofE9gJ9/nJQqIx2mrYSKti8KvPmU8VI8+6Tf"
         crossorigin="anonymous"></script>
 <script>
-    $('form').submit(function (event) {
+  $(document).ready(function() {
+    $("#form").on('submit', (function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: '/',
+        type: "POST",
+        data: new FormData(this),
+        success: function(response) {
+          $("#form").trigger("reset"); // to reset form input fields
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
+    }));
+  });
+    {% comment %} $('form').submit(function (event) {
         event.preventDefault();
         var formData = new FormData($('form')[0]);
         $.ajax({
@@ -46,7 +62,7 @@
                 $('#result').text('Transcription: ' + data.transcription);
             }
         });
-    });
+    }); {% endcomment %}
 </script>
 </body>
 </html>
