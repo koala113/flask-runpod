@@ -30,9 +30,9 @@
 </div>
 <p>Translation: {{name}}</p> 
 <ul>
-  {% for i in range(0, timestream|length, 3) %}
-        <li>{{ timestream[i] }}-&gt;{{ timestream[i+1] }}:{{ timestream[i+2] }}</li>
-    {% endfor %}
+  {% for index, item in enumerate(timestam) %}
+            <li>{{ index }}: {{ item }}</li>
+        {% endfor %}
 </ul>  
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
