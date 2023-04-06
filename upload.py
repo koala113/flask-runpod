@@ -46,7 +46,7 @@ def success():
         # options = whisper.DecodingOptions()
         # result = whisper.decode(model, mel, options)
         # f.save(f.filename)  
-        return render_template("index.html", name = result['text']+stab_segments)  
+        return render_template("index.html", name = result['text'])  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', port='3000', debug = True)  
