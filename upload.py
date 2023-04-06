@@ -39,7 +39,7 @@ def success():
             start = stab_segments[i]['start']
             end = stab_segments[i]['end']
             text = stab_segments[i]['text']
-            total = start + '~' + end + ':' + text
+            total = str(start) + '~' + str(end) + ':' + str(text)
             print_list.append(total)
             # print_list.append('\n')
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
