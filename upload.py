@@ -3,7 +3,7 @@ import numpy as np
 from flask import * 
 import os
 from stable_whisper import modify_model
-import jsons
+import json
 
 # from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
@@ -27,7 +27,7 @@ def success():
         # result = model.transcribe(f.filename, language='fr', suppress_silence=True, ts_num=16)
         result = model.transcribe(f.filename, language='fr')# suppress_silence=True, ts_num=16)
         # print(result)
-        print(jsons.dumps(result))
+        print(json.dumps(result))
         # stab_segments = result['segments']
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
