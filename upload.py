@@ -29,9 +29,10 @@ def success():
         # print(result)
         result = result.to_dict()
         stab_segments = result['segments']
-        first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
+        
+        # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
-        print(first_segment_word_timestamps)
+        print(stab_segments)
         # print(stab_segments)
         # audio = whisper.load_audio(f.filename)
         # audio = whisper.pad_or_trim(audio) 
@@ -40,7 +41,7 @@ def success():
         # options = whisper.DecodingOptions()
         # result = whisper.decode(model, mel, options)
         # f.save(f.filename)  
-        return render_template("index.html", name = first_segment_word_timestamps)  
+        return render_template("index.html", name = stab_segments)  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', port='3000', debug = True)  
