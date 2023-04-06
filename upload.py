@@ -33,6 +33,13 @@ def success():
         result.save_as_json('audio.json')
         result = result.to_dict()
         stab_segments = result['segments']
+        count_sentence = len(stab_segments)
+        print_list = []
+        for i in range(0, count_sentence):
+            print_list.append(stab_segments[i]['start'])
+            print_list.append(stab_segments[i]['end'])
+            print_list.append(stab_segments[i]['text'])
+            print_list.append('\n')
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
         # print(stab_segments)
@@ -45,7 +52,7 @@ def success():
         # options = whisper.DecodingOptions()
         # result = whisper.decode(model, mel, options)
         # f.save(f.filename)  
-        return render_template("index.html", name = result['text'], timestam = len(stab_segments))  
+        return render_template("index.html", name = result['text'], timestam = print_list)  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', port='3000', debug = True)  
