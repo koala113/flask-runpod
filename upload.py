@@ -5,14 +5,45 @@ import os
 from stable_whisper import modify_model
 import json
 import stable_whisper
+import re
+import torch
+
+
 # from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
 # curr_dir = os.path.dirname(os.getcwd())
 # model = whisper.load_model(curr_dir + "/pytorch_model.bin") 
-with open('../pytorch_model.bin', 'rb') as f1:
-    data = np.fromfile(f1, dtype=np.float32)
+def hf_to_whisper_states(text):
+    text = re.sub('.layers.', '.blocks.', text)
+    text = re.sub('.self_attn.', '.attn.', text)
+    text = re.sub('.q_proj.', '.query.', text)
+    text = re.sub('.k_proj.', '.key.', text)
+    text = re.sub('.v_proj.', '.value.', text)
+    text = re.sub('.out_proj.', '.out.', text)
+    text = re.sub('.fc1.', '.mlp.0.', text)
+    text = re.sub('.fc2.', '.mlp.2.', text)
+    text = re.sub('.fc3.', '.mlp.3.', text)
+    text = re.sub('.fc3.', '.mlp.3.', text)
+    text = re.sub('.encoder_attn.', '.cross_attn.', text)
+    text = re.sub('.cross_attn.ln.', '.cross_attn_ln.', text)
+    text = re.sub('.embed_positions.weight', '.positional_embedding', text)
+    text = re.sub('.embed_tokens.', '.token_embedding.', text)
+    text = re.sub('model.', '', text)
+    text = re.sub('attn.layer_norm.', 'attn_ln.', text)
+    text = re.sub('.final_layer_norm.', '.mlp_ln.', text)
+    text = re.sub('encoder.layer_norm.', 'encoder.ln_post.', text)
+    text = re.sub('decoder.layer_norm.', 'decoder.ln.', text)
+    return text
+hf_state_dict = torch.load('../pytorch_model.bin') 
+for key in list(hf_state_dict.keys())[:]:
+    new_key = hf_to_whisper_states(key)
+    hf_state_dict[new_key] = hf_state_dict.pop(key)
 model = whisper.load_model('large')
-modify_model(model)
+model.load_state_dict(hf_state_dict)
+# with open('../pytorch_model.bin', 'rb') as f1:
+#     data = np.fromfile(f1, dtype=np.float32)
+# model = whisper.load_model('large')
+# modify_model(model)
 # model.load_from_bytes(data.tobytes())
 
 @app.route('/')  
