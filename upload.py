@@ -26,6 +26,7 @@ def success():
         f.save(f.filename) 
         # result = model.transcribe(f.filename, language='fr', suppress_silence=True, ts_num=16)
         result = model.transcribe(f.filename, language='fr')# suppress_silence=True, ts_num=16)
+        print(result.__dir__)
         # print(json.dumps(result, indent = 2, ensure_ascii = False))
         # stab_segments = result['segments']
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
@@ -39,7 +40,7 @@ def success():
         # options = whisper.DecodingOptions()
         # result = whisper.decode(model, mel, options)
         # f.save(f.filename)  
-        return render_template("index.html", name = result["text"])  
+        return render_template("index.html", name = result.text())  
 
 if __name__ == '__main__':  
     app.run(host= '0.0.0.0', port='3000', debug = True)  
