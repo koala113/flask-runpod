@@ -36,8 +36,8 @@ def success():
         
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
-        print(stab_segments)
-        print(stab_segments[:]['words'])
+        # print(stab_segments)
+        # print(stab_segments[:]['words'])
         # print(stab_segments)
         # audio = whisper.load_audio(f.filename)
         # audio = whisper.pad_or_trim(audio) 
