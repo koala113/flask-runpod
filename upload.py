@@ -28,7 +28,7 @@ def success():
         result = model.transcribe(f.filename, language='fr')# suppress_silence=True, ts_num=16)
         # print(result)
         result = result.to_dict()
-        stab_segments = result['segments']['word']
+        stab_segments = result['segments'][0]
         
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
