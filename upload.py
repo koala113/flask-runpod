@@ -39,7 +39,7 @@ def success():
             print_list.append(stab_segments[i]['start'])
             print_list.append(stab_segments[i]['end'])
             print_list.append(stab_segments[i]['text'])
-            print_list.append('\n')
+            # print_list.append('\n')
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
         # print(stab_segments)

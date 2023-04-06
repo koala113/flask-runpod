@@ -28,8 +28,12 @@
         </div>
     </div>
 </div>
-<p>Translation: {{name}}</p>  
-<p>{{timestam}}</p>  
+<p>Translation: {{name}}</p> 
+<ul>
+  {% for i in range(0, len(timestam)/3) %}
+        <li>{{ timestream[i*3] }}-&gt{{ timestream[i*3+1] }}:{{ timestream[i*3+2] }}</li>
+    {% endfor %}
+</ul>  
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs7VBj6AJSKxpPofE9gJ9/nJQqIx2mrYSKti8KvPmU8VI8+6Tf"
