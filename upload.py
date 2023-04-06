@@ -5,7 +5,7 @@ import os
 from stable_whisper import modify_model
 import json
 
-from stable_whisper import stabilize_timestamps
+# from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
 # curr_dir = os.path.dirname(os.getcwd())
 # model = whisper.load_model(curr_dir + "/pytorch_model.bin") 
