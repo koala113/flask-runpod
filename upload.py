@@ -4,7 +4,7 @@ from flask import *
 import os
 from stable_whisper import modify_model
 import json
-
+import stable_whisper
 # from stable_whisper import stabilize_timestamps
 app = Flask(__name__)  
 # curr_dir = os.path.dirname(os.getcwd())
@@ -27,13 +27,17 @@ def success():
         # result = model.transcribe(f.filename, language='fr', suppress_silence=True, ts_num=16)
         result = model.transcribe(f.filename, language='fr')# suppress_silence=True, ts_num=16)
         # print(result)
+        result.to_srt_vtt('audio.srt', word_level=False)
+        result.to_srt_vtt('output.srt', segment_level=False)
+        result.to_ass('output.ass')
+        result.save_as_json('audio.json')
         result = result.to_dict()
-        stab_segments = result['segments'][0]
+        stab_segments = result['segments']
         
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
         print(stab_segments)
-        print(stab_segments[0])
+        print(stab_segments[:]['word'])
         # print(stab_segments)
         # audio = whisper.load_audio(f.filename)
         # audio = whisper.pad_or_trim(audio) 
