@@ -62,7 +62,7 @@ def success():
         # result.to_srt_vtt('output.srt', segment_level=False)
         # result.to_ass('output.ass')
         # result.save_as_json('audio.json')
-        result = result.to_dict()
+        # result = result.to_dict()
         stab_segments = result['segments']
         count_sentence = len(stab_segments)
         print_list = []
