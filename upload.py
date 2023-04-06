@@ -36,7 +36,11 @@ def success():
         count_sentence = len(stab_segments)
         print_list = []
         for i in range(0, count_sentence):
-            print_list.append(stab_segments[i]['start']+'~'+stab_segments[i]['end']+':'+stab_segments[i]['text'])
+            start = stab_segments[i]['start']
+            end = stab_segments[i]['end']
+            text = stab_segments[i]['text']
+            total = start + '~' + end + ':' + text
+            print_list.append(total)
             # print_list.append('\n')
         # first_segment_word_timestamps = stab_segments[0]['whole_word_timestamps']
         # stab_segments = stabilize_timestamps(result, top_focus=True)
