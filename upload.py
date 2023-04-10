@@ -91,6 +91,7 @@ def success():
         }
         json_data = json.dumps(data)
         response = Response(json_data, content_type = 'application/json')
+        response.headers.add("Access-Control-Allow-Origin", "*")
         return response
         # return render_template("index.html", name = result['text'], timestam = print_list)  
 
